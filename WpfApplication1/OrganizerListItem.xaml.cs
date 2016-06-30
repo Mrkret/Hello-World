@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -76,7 +77,15 @@ namespace WpfApplication1
             
         }
 
-
-
+        private void DeleteFolder_Click(object sender, RoutedEventArgs e)
+        {
+            
+            var result = MessageBox.Show("do you want to delete the folder?", "kek", MessageBoxButton.YesNo);
+            if(result == MessageBoxResult.Yes)
+            {
+                Directory.Delete(MainDirectory.directory + "\\" + Header);
+            }
+            
+        }
     }
 }

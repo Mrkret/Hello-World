@@ -13,9 +13,14 @@
                 <RowDefinition MinHeight="80"/>
             </Grid.RowDefinitions>
             <Border Grid.Column="0" Grid.Row="0" Background="Gray" CornerRadius="9,9,0,0" HorizontalAlignment="Stretch">
-                <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:OrganizerListItem},Path=Header,Mode=TwoWay}" 
-                     Background="{x:Null}" HorizontalAlignment="Center" MinWidth="60" VerticalContentAlignment="Center" VerticalAlignment="Stretch" 
-                     TextAlignment="Center" FontSize="16" BorderBrush="Transparent" FontWeight="Heavy" />
+                <Grid>
+                    <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:OrganizerListItem},Path=Header,Mode=TwoWay}" 
+                        Background="{x:Null}" HorizontalAlignment="Center" MinWidth="60" VerticalContentAlignment="Center" VerticalAlignment="Stretch" 
+                        TextAlignment="Center" FontSize="16" BorderBrush="Transparent" FontWeight="Heavy" />
+                    <Button x:Name="DeleteFolder" Margin="5" Width="15" Height="15" HorizontalAlignment="Right" Background="White" Click="DeleteFolder_Click">
+                        <Image Source="C:\Users\Artur\Desktop\Bez tytułu.png"/>
+                    </Button>
+                </Grid>
             </Border>
         <Border Grid.Row="1" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,1" Padding="0.5" MinHeight="100" HorizontalAlignment="Stretch" MouseWheel="ScrollContent">
             <WrapPanel Name="OrganizerFilesPanel" ItemHeight="70" ItemWidth="70"/>
