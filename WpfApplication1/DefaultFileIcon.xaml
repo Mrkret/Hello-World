@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WpfApplication1.DefaultFileIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApplication1"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="50">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        
+        <Border Grid.Row="1" >
+            <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:OrganizerListItem},Path=FileName,Mode=TwoWay}" TextWrapping="Wrap" Padding="0" Background="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Border>
+        <Border Background="Transparent" >
+            
+            <Image Source="C:\Users\Artur\Desktop\FileIcon.png"></Image>
+        </Border>
+    </Grid>
+</UserControl>
