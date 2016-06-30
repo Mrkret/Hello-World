@@ -30,26 +30,23 @@
             <Button x:Name="closeWindow" Background="White" BorderBrush="Gray" VerticalContentAlignment="Center" 
                         HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                         Click="closeMainWindow" Height="22" Width="22" Margin="0,0,10,10" >
-                <!--<Image Source="C:\Users\Artur\Desktop\Bez tytułu.png"/>-->
+                <Image Source="C:\Users\Artur\Desktop\Bez tytułu.png"/>
             </Button>
         </Grid>
         <Border x:Name="SideBar" Padding="5" Grid.Column="1" Grid.Row="1" Background="gray" CornerRadius="5">
             <Grid>
                 <StackPanel Orientation="Vertical">
                     <Button x:Name="showOrganizerWindow" Width="40" Height="40" Click="showOrganizerWindow_click" Background="WhiteSmoke">
-                        <!--<Image Source="C:\Users\Artur\Desktop\folder.png"/>-->
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"  Text="1"/>
+                        <Image Source="C:\Users\Artur\Desktop\folder.png"/>
+
                     </Button>
                     <Button x:Name="showMusicWindow" Width="40" Height="40" Background="WhiteSmoke" Click="showMusicWindow_Click">
-                        <!--<Image Source="C:\Users\Artur\Desktop\note.png"/>-->
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"  Text="2"/>
+                        <Image Source="C:\Users\Artur\Desktop\note.png"/>
                     </Button>
                     <Button x:Name="showInternetWindow" Width="40" Height="40" Background="WhiteSmoke" Click="showInternetWindow_Click">
-                        <!--<Image Source="C:\Users\Artur\Desktop\13-512.png"/>-->
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"  Text="3"/>
+                        <Image Source="C:\Users\Artur\Desktop\13-512.png"/>
                     </Button>
                 </StackPanel>
-
             </Grid>
         </Border>
 

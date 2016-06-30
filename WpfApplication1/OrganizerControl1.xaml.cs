@@ -29,11 +29,9 @@ namespace WpfApplication1
             //MainDirectory.StartWatchingForChanges(MainDirectory.directory);            
         }
 
-        private void OnChanged(object source, FileSystemEventArgs e)
+        public void ClearOrgList()
         {
             OrganizerList.Items.Clear();
-            if(WindowContentManagement.ccContent is OrganizerControl1)
-            MainDirectory.FindCatalogs();
         }
 
         private void AddOrganizerListItem_Click(object sender, RoutedEventArgs e)
@@ -53,7 +51,7 @@ namespace WpfApplication1
 
         }
 
-        private void ScrollContent(object sender,MouseWheelEventArgs e)
+        public void ScrollContent(object sender,MouseWheelEventArgs e)
         {
             scrolLViewer.ScrollToVerticalOffset(scrolLViewer.VerticalOffset - e.Delta);
         }

@@ -24,15 +24,21 @@ namespace WpfApplication1
         public static void StartWatchingForChanges(string dir)
         {
             FileSystemWatcher watcher = new FileSystemWatcher(dir);
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.Size;
+            watcher.NotifyFilter = NotifyFilters.LastAccess;
             watcher.Filter = "*.*";
-            watcher.Changed += new FileSystemEventHandler(OnChanged);           
-            //watcher.Created += new FileSystemEventHandler(OnChanged);
-            //watcher.Deleted += new FileSystemEventHandler(OnChanged);
-            //watcher.Renamed += new RenamedEventHandler(OnChanged);            
+            //watcher.Changed += new FileSystemEventHandler(OnChanged);           
+            watcher.Created += new FileSystemEventHandler(OnChanged);
+            watcher.Deleted += new FileSystemEventHandler(OnChanged);
+            watcher.Renamed += new RenamedEventHandler(OnChanged);
             watcher.EnableRaisingEvents = true;
         }
-        private static void OnChanged(object source, FileSystemEventArgs e) { }
+        private static void OnChanged(object source, FileSystemEventArgs e)
+        {
+
+            if (WindowContentManagement.ccContent is OrganizerControl1)
+                
+                FindCatalogs();
+        }
 
         public static void FindCatalogs()
         {
@@ -40,6 +46,7 @@ namespace WpfApplication1
             //DirectoryInfo Dir = new DirectoryInfo(directory);
             Folders = Directory.GetFileSystemEntries(directory);
             OrganizerControl1 OrgControl = new OrganizerControl1();
+            
             for(int i=0; i < Folders.Length; i++)
             {
                 string FolderDir = Folders[i];
@@ -47,6 +54,7 @@ namespace WpfApplication1
                 DirectoryInfo dInfo = new DirectoryInfo(Folders[i]);
                
                 OrganizerListItem OLI = new OrganizerListItem(FindFiles(FolderDir), dInfo.Name);
+                
                 OrgControl.OrganizerList.Items.Add(OLI);                
             }
 

@@ -45,6 +45,8 @@ namespace WpfApplication1
         public OrganizerListItem()
         {
             InitializeComponent();
+
+            this.MouseWheel += ScrollContent;
             //DefaultFileIcon icon = new DefaultFileIcon();
             //OrganizerFilesPanel.Children.Add(icon);
         }
@@ -57,13 +59,24 @@ namespace WpfApplication1
                 DefaultFileIcon icon = new DefaultFileIcon(file.Name, file.Extension);
                 icon.VerticalAlignment = VerticalAlignment.Stretch;
                 icon.HorizontalAlignment = HorizontalAlignment.Stretch;
-                icon.MinHeight = 30;
-                icon.MinWidth = 30;
+                
                 OrganizerFilesPanel.Children.Add(icon);
             }
         }
+        public void ScrollContent(object sender, MouseWheelEventArgs e)
+        {
+            DependencyObject obj = this;
 
-       
+            do
+            {
+                obj = VisualTreeHelper.GetParent(obj);
+            } while (obj.GetType() != typeof(OrganizerControl1));
+
+            ((OrganizerControl1)obj).scrolLViewer.ScrollToVerticalOffset(((OrganizerControl1)obj).scrolLViewer.VerticalOffset - e.Delta);
+            
+        }
+
+
 
     }
 }

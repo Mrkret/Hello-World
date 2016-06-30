@@ -8,8 +8,8 @@
              d:DesignHeight="80" d:DesignWidth="50">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         
@@ -17,8 +17,7 @@
             <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DefaultFileIcon},Path=FileName,Mode=TwoWay}" TextWrapping="Wrap" Padding="0" Background="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </Border>
         <Border Background="Transparent" >
-            <TextBlock Text="PLIK"/>
-            <!--<Image Source="C:\Users\Artur\Desktop\FileIcon.png"></Image>-->
+            <Image Source="C:\Users\Artur\Desktop\FileIcon.png"></Image>
         </Border>
     </Grid>
 </UserControl>
