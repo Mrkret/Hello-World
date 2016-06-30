@@ -32,6 +32,7 @@ namespace WpfApplication1
         private void OnChanged(object source, FileSystemEventArgs e)
         {
             OrganizerList.Items.Clear();
+            if(WindowContentManagement.ccContent is OrganizerControl1)
             MainDirectory.FindCatalogs();
         }
 

@@ -54,7 +54,11 @@ namespace WpfApplication1
             InitializeComponent();
             foreach(FileObj file in files)
             {
-                DefaultFileIcon icon = new DefaultFileIcon(file.name, file.extension);
+                DefaultFileIcon icon = new DefaultFileIcon(file.Name, file.Extension);
+                icon.VerticalAlignment = VerticalAlignment.Stretch;
+                icon.HorizontalAlignment = HorizontalAlignment.Stretch;
+                icon.MinHeight = 30;
+                icon.MinWidth = 30;
                 OrganizerFilesPanel.Children.Add(icon);
             }
         }

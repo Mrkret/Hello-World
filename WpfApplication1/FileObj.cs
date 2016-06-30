@@ -9,23 +9,19 @@ namespace WpfApplication1
 {
     public class FileObj
     {
-        public string name;
-        public string directory;
-        public string extension;
-        
-        public string Directory
+        public FileObj(string dir)
         {
-            get
-            {
-                return directory;
-            }
-            set
-            {
-                directory = value;
-                FileInfo FInfo = new FileInfo(directory);
-                name = FInfo.Name;
-                extension = FInfo.Extension;                
-            }
-        }     
+            Directory = dir;
+            FileInfo fInfo = new FileInfo(Directory);
+            Name = fInfo.Name;
+            Extension = fInfo.Extension;
+        }
+
+        public string Name { get; set; }
+       
+        public string Extension { get; set; }
+
+        public string Directory { get; set; }
+    
     }
 }

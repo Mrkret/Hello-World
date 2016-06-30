@@ -9,14 +9,14 @@
     <Grid HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="auto" MinHeight="80"/>
+            <RowDefinition MinHeight="80"/>
         </Grid.RowDefinitions>
         <Border Grid.Column="0" Grid.Row="0" Background="Gray" CornerRadius="9,9,0,0" HorizontalAlignment="Stretch">
             <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:OrganizerListItem},Path=Header,Mode=TwoWay}" 
                      Background="{x:Null}" HorizontalAlignment="Center" MinWidth="60" VerticalContentAlignment="Center" VerticalAlignment="Stretch" 
                      TextAlignment="Center" FontSize="16" BorderBrush="Transparent" FontWeight="Heavy" />
         </Border>
-        <Border Grid.Row="1" Background="Black" Padding="0.5">
+        <Border Grid.Row="1" Background="Black" Padding="0.5" MinHeight="100" HorizontalAlignment="Stretch">
             <Border Background="LightGray">
                 <WrapPanel Name="OrganizerFilesPanel" ItemHeight="70" ItemWidth="70"/>
             </Border>

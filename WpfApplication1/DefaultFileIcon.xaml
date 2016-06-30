@@ -14,11 +14,11 @@
 
         
         <Border Grid.Row="1" >
-            <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:OrganizerListItem},Path=FileName,Mode=TwoWay}" TextWrapping="Wrap" Padding="0" Background="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:DefaultFileIcon},Path=FileName,Mode=TwoWay}" TextWrapping="Wrap" Padding="0" Background="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </Border>
         <Border Background="Transparent" >
-            
-            <Image Source="C:\Users\Artur\Desktop\FileIcon.png"></Image>
+            <TextBlock Text="PLIK"/>
+            <!--<Image Source="C:\Users\Artur\Desktop\FileIcon.png"></Image>-->
         </Border>
     </Grid>
 </UserControl>

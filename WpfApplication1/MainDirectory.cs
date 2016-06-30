@@ -9,7 +9,7 @@ namespace WpfApplication1
 {
     static class MainDirectory
     {
-        public static string directory = "C:\\Users\\Artur\\Desktop\\MainFolder";
+        public static string directory = Environment.CurrentDirectory + "\\MainDirectory";
         //public void GetFoldersList(string FolderName)
         //{
         //    string direct = directory;
@@ -17,7 +17,7 @@ namespace WpfApplication1
         //    DirectoryInfo Dir = new DirectoryInfo(direct);
         //    if (Dir.Exists)
         //    {
-                
+
         //    }
 
         //}
@@ -33,6 +33,7 @@ namespace WpfApplication1
             watcher.EnableRaisingEvents = true;
         }
         private static void OnChanged(object source, FileSystemEventArgs e) { }
+
         public static void FindCatalogs()
         {
             string[] Folders;          
@@ -41,24 +42,31 @@ namespace WpfApplication1
             OrganizerControl1 OrgControl = new OrganizerControl1();
             for(int i=0; i < Folders.Length; i++)
             {
-                string FolderDir = directory + "\\" + Folders[i];                               
-                OrganizerListItem OLI = new OrganizerListItem(FindFiles(FolderDir), Folders[i]);
+                string FolderDir = Folders[i];
+
+                DirectoryInfo dInfo = new DirectoryInfo(Folders[i]);
+               
+                OrganizerListItem OLI = new OrganizerListItem(FindFiles(FolderDir), dInfo.Name);
                 OrgControl.OrganizerList.Items.Add(OLI);                
             }
-            if (WindowContentManagement.ccContent is OrganizerControl1)
-            {
+
                 WindowContentManagement.ccContent = OrgControl;
-            }
+            
         }
         public static FileObj[] FindFiles(string FolderDir)
         {
             string[] files = Directory.GetFileSystemEntries(FolderDir);
+            
             FileObj[] FolderFiles;
-            FolderFiles = new FileObj[files.Length];
-            for(int i=0; i < files.Length; i++)
+
+            FolderFiles = new FileObj[files.Count()];
+
+
+            for(int i=0; i < files.Count(); i++)
             {
-                FolderFiles[i].Directory = files[i];     
+                FolderFiles[i] = new FileObj(files[i]);  
             }
+
             return FolderFiles;
         }
     }

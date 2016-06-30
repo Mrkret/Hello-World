@@ -28,33 +28,36 @@
             <Border Background="Gray" CornerRadius="9"></Border>
 
             <Button x:Name="closeWindow" Background="White" BorderBrush="Gray" VerticalContentAlignment="Center" 
-                        HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center" 
-                        Click="closeMainWindow" Height="22" Width="22" Margin="0,10,10,10" >
-                <Image Source="C:\Users\Artur\Desktop\Bez tytułu.png"/>
+                        HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                        Click="closeMainWindow" Height="22" Width="22" Margin="0,0,10,10" >
+                <!--<Image Source="C:\Users\Artur\Desktop\Bez tytułu.png"/>-->
             </Button>
         </Grid>
         <Border x:Name="SideBar" Padding="5" Grid.Column="1" Grid.Row="1" Background="gray" CornerRadius="5">
             <Grid>
-            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
                     <Button x:Name="showOrganizerWindow" Width="40" Height="40" Click="showOrganizerWindow_click" Background="WhiteSmoke">
-                        <Image Source="C:\Users\Artur\Desktop\folder.png"/>
+                        <!--<Image Source="C:\Users\Artur\Desktop\folder.png"/>-->
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"  Text="1"/>
                     </Button>
                     <Button x:Name="showMusicWindow" Width="40" Height="40" Background="WhiteSmoke" Click="showMusicWindow_Click">
-                    <Image Source="C:\Users\Artur\Desktop\note.png"/>
-                    
-                </Button>
+                        <!--<Image Source="C:\Users\Artur\Desktop\note.png"/>-->
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"  Text="2"/>
+                    </Button>
                     <Button x:Name="showInternetWindow" Width="40" Height="40" Background="WhiteSmoke" Click="showInternetWindow_Click">
-                        <Image Source="C:\Users\Artur\Desktop\13-512.png"/>
+                        <!--<Image Source="C:\Users\Artur\Desktop\13-512.png"/>-->
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"  Text="3"/>
                     </Button>
                 </StackPanel>
-            
+
             </Grid>
         </Border>
 
         <Border Grid.Column="0" Grid.Row="1" Background="Black" CornerRadius="9">
             <!--<Grid x:Name="gContent" Margin="0,2,2,0" Grid.IsSharedSizeScope="True">
                
-                   --><!--<Border Name="MusicWindow" Background="Gray" CornerRadius="9" Visibility="Visible">
+                   -->
+            <!--<Border Name="MusicWindow" Background="Gray" CornerRadius="9" Visibility="Visible">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
@@ -76,7 +79,8 @@
                 <Border Name="InternetWindow" Background="DarkGray" CornerRadius="9" Visibility="Collapsed">
 
                 </Border>-->
-                <!--<local:OrganizerControl1/>--><!--
+            <!--<local:OrganizerControl1/>-->
+            <!--
             </Grid>-->
             <ContentControl Content="{Binding Source={StaticResource WindowContentManagement},Path=ccContent}" />
         </Border>

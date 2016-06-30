@@ -42,7 +42,8 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
-        public DefaultFileIcon(string Name, string extension)
+
+        public DefaultFileIcon(string Name, string extension) : this()
         {
             FileName = Name + extension;
         }
