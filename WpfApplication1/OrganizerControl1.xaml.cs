@@ -25,6 +25,8 @@ namespace WpfApplication1
         public OrganizerControl1()
         {
             InitializeComponent();
+            MainDirectory.created += OnCreated;
+            MainDirectory.deleted += OnDeleted;
             //MainDirectory.FindCatalogs();
             //MainDirectory.StartWatchingForChanges(MainDirectory.directory);            
         }
@@ -83,7 +85,68 @@ namespace WpfApplication1
 
         private void popup_KeyDown(object sender, KeyEventArgs e)
         {
+            
+        }
 
+        private void OnCreated(FileSystemEventArgs e)
+        {
+            if (MainDirectory.IsDirectory(e.FullPath) == true)
+            {
+                DirectoryInfo DirInfo = new DirectoryInfo(e.FullPath);
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.DataBind,
+                new Action(() =>
+                {
+                    //OrganizerListItem OLI = new OrganizerListItem(DirInfo.Name);
+                    //OrganizerList.Items.Add(OLI);
+                    MainDirectory.FindCatalogs();
+                }));
+
+
+            }
+            else if (MainDirectory.IsDirectory(e.FullPath) == false)
+            {
+                FileInfo fInfo = new FileInfo(e.FullPath);
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.DataBind,
+                new Action(() =>
+                {
+                    foreach (var item in OrganizerList.Items.OfType<OrganizerListItem>())
+                    {
+                        if (item.Header == fInfo.Directory.Name)
+                        {
+                            item.OrganizerFilesPanel.Children.Add(new DefaultFileIcon(fInfo.Name, fInfo.Extension));
+                        }
+                    }
+                }));
+            }
+
+        }
+        private void OnDeleted(FileSystemEventArgs e)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.DataBind,
+                new Action(() =>
+                {
+                    MainDirectory.FindCatalogs();
+                
+                }));         
+            //if (MainDirectory.IsDirectory(e.FullPath) == true)
+            //{
+            //    MessageBox.Show("true");
+            //    DirectoryInfo DirInfo = new DirectoryInfo(e.FullPath);
+
+
+            //    Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.DataBind,
+            //    new Action(() =>
+            //    {
+            //        foreach (var item in OrganizerList.Items.OfType<OrganizerListItem>())
+            //        {
+            //            if (item.Header == DirInfo.Name)
+            //            {
+            //                OrganizerList.Items.Remove(item);
+            //            }
+            //        }
+            //    }));
+            //}
+            
         }
     }
 }

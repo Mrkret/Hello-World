@@ -9,7 +9,11 @@ namespace WpfApplication1
 {
     static class MainDirectory
     {
-        public static string directory = Environment.CurrentDirectory + "\\MainDirectory";
+        public static Action<FileSystemEventArgs> created;
+        public static Action<FileSystemEventArgs> deleted;
+        public static Action<RenamedEventArgs> renamed;
+        public static string directory = Environment.CurrentDirectory + "\\MainDirectory\\";
+        public static FileSystemWatcher watcher;
         //public void GetFoldersList(string FolderName)
         //{
         //    string direct = directory;
@@ -23,13 +27,21 @@ namespace WpfApplication1
         //}
         public static void StartWatchingForChanges(string dir)
         {
-            FileSystemWatcher watcher = new FileSystemWatcher(dir);
-            watcher.NotifyFilter = NotifyFilters.LastAccess;
-            watcher.Filter = "*.*";
-            //watcher.Changed += new FileSystemEventHandler(OnChanged);           
-            watcher.Created += new FileSystemEventHandler(OnChanged);
-            watcher.Deleted += new FileSystemEventHandler(OnChanged);
-            watcher.Renamed += new RenamedEventHandler(OnChanged);
+            watcher = new FileSystemWatcher(dir);
+            watcher.IncludeSubdirectories = true;
+            watcher.NotifyFilter = NotifyFilters.LastWrite | 
+                                   NotifyFilters.CreationTime |
+                                   NotifyFilters.Size | 
+                                   NotifyFilters.Attributes | 
+                                   NotifyFilters.DirectoryName | 
+                                   NotifyFilters.FileName | 
+                                   NotifyFilters.LastAccess | 
+                                   NotifyFilters.Security;
+            
+            //watcher.Changed += new FileSystemEventHandler(OnChanged);
+            watcher.Created += new FileSystemEventHandler(OnCreated);
+            watcher.Deleted += new FileSystemEventHandler(OnDeleted);
+            watcher.Renamed += new RenamedEventHandler(OnRenamed);
             watcher.EnableRaisingEvents = true;
         }
         private static void OnChanged(object source, FileSystemEventArgs e)
@@ -38,6 +50,36 @@ namespace WpfApplication1
             if (WindowContentManagement.ccContent is OrganizerControl1)
                 
                 FindCatalogs();
+        }
+        private static void OnCreated(object source, FileSystemEventArgs e)
+        {
+            var handler = created;
+            if(handler!=null)
+            {
+                created(e);
+            }
+
+            //if(IsDirectory(e.FullPath)==true)
+            //{
+            //    DirectoryInfo DirInfo = new DirectoryInfo(e.FullPath); 
+
+            //}       
+        }
+        private static void OnDeleted(object source, FileSystemEventArgs e)
+        {
+            var handler = deleted;
+            if (handler != null)
+            {
+                deleted(e);
+            }
+        }
+        private static void OnRenamed(object source, RenamedEventArgs e)
+        {
+            var handler = renamed;
+            if (handler != null)
+            {
+                renamed(e);
+            }
         }
 
         public static void FindCatalogs()
@@ -76,6 +118,15 @@ namespace WpfApplication1
             }
 
             return FolderFiles;
+        }
+        public static bool? IsDirectory(string path)
+        {
+            if (Directory.Exists(path))
+                return true; // is a directory 
+            else
+            if (File.Exists(path)) return false; // is a file 
+            else
+                return null; // is a nothing 
         }
     }
 }

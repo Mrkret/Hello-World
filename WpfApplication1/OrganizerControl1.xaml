@@ -11,9 +11,10 @@
             <RowDefinition/>
             <RowDefinition Height="0.07*"/>
         </Grid.RowDefinitions>
-        <Border Padding="1,1,1,0" CornerRadius="9,9,0,0" Background="DarkGray">
-            <ScrollViewer Name="scrolLViewer" VerticalScrollBarVisibility="Auto">
-                <ListBox Name="OrganizerList" BorderBrush="Transparent" Background="Transparent" HorizontalContentAlignment="Stretch"/>
+        
+        <Border Padding="1,1,1,0" CornerRadius="9,9,0,0" Background="DarkGray" >
+            <ScrollViewer Name="scrolLViewer" VerticalScrollBarVisibility="visible" HorizontalScrollBarVisibility="Hidden" MaxWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}, Path=Width}">
+                <ListBox ScrollViewer.CanContentScroll="False" Name="OrganizerList" BorderBrush="Transparent" Background="Transparent" HorizontalContentAlignment="Stretch"/>
             </ScrollViewer>
         </Border>
         <Border Grid.Row="1" Background="Black" CornerRadius="0,0,9,9">

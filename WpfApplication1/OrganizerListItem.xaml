@@ -5,13 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApplication1"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+             d:DesignHeight="300" d:DesignWidth="450" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
     
         <Grid HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition MinHeight="80"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="445"/>
+            </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Grid.Row="0" Background="Gray" CornerRadius="9,9,0,0" HorizontalAlignment="Stretch">
                 <Grid>
                     <TextBox Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:OrganizerListItem},Path=Header,Mode=TwoWay}" 
@@ -22,8 +25,8 @@
                     </Button>
                 </Grid>
             </Border>
-        <Border Grid.Row="1" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,1" Padding="0.5" MinHeight="100" HorizontalAlignment="Stretch" MouseWheel="ScrollContent">
-            <WrapPanel Name="OrganizerFilesPanel" ItemHeight="70" ItemWidth="70"/>
+        <Border Name="DropZone" Grid.Row="1" Drop="OrganizerFilesPanel_Drop" AllowDrop="True" Background="LightGray" BorderBrush="Black" BorderThickness="1,0,1,1" Padding="0.5" MinHeight="100" HorizontalAlignment="Stretch" MouseWheel="ScrollContent">
+            <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AllowDrop="True" Name="OrganizerFilesPanel" ItemHeight="70"  ItemWidth="70" Drop="OrganizerFilesPanel_Drop"/>
             </Border>
         </Grid>
     

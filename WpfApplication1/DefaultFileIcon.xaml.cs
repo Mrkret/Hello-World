@@ -38,6 +38,23 @@ namespace WpfApplication1
         public static readonly DependencyProperty FileNameProperty = DependencyProperty.Register("FileName", typeof(string), typeof(DefaultFileIcon));
 
 
+
+        public string ImgPath
+        {
+            get
+            {
+                return (string)GetValue(ImgPathProperty);
+            }
+            set
+            {
+                SetValue(ImgPathProperty, value);
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for ImgPath.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImgPathProperty =
+            DependencyProperty.Register("ImgPath", typeof(string), typeof(DefaultFileIcon));
+
         public DefaultFileIcon()
         {
             InitializeComponent();
@@ -45,7 +62,23 @@ namespace WpfApplication1
 
         public DefaultFileIcon(string Name, string extension) : this()
         {
-            FileName = Name + extension;
+            FileName = Name;
+            if(extension == ".txt")
+            {
+                ImgPath = "C:\\Users\\Artur\\Desktop\\FileIcon.png";
+            }
+            else if(extension == ".png" || 
+                    extension == ".jpg" || 
+                    extension == ".gif" || 
+                    extension == ".jpeg"|| 
+                    extension == ".bmp" || 
+                    extension == ".tga" || 
+                    extension == ".dds")
+            {
+                //ImgPath = "C:\\Users\\Artur\\Desktop\\ImageIcon.png";
+                ImgPath = MainDirectory.directory + OrganizerListItem.HeaderProperty.ToString() + "\\" + FileName;
+                MessageBox.Show(ImgPath);
+            }
         }
     }
 }

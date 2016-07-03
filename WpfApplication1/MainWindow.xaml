@@ -17,8 +17,8 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="467*"/>
+            <ColumnDefinition Width="58*"/>
         </Grid.ColumnDefinitions>
         <Border x:Name="brTop" BorderThickness="1" Grid.ColumnSpan="2" Background="LightBlue" CornerRadius="9" MouseLeftButtonDown="brTop_MouseLeftButtonDown" />
 

@@ -51,10 +51,8 @@ namespace WpfApplication1
             //DefaultFileIcon icon = new DefaultFileIcon();
             //OrganizerFilesPanel.Children.Add(icon);
         }
-        public OrganizerListItem(FileObj[] files, string hheader)
+        public OrganizerListItem(FileObj[] files, string hheader) : this(hheader)
         {
-            Header = hheader;
-            InitializeComponent();
             foreach(FileObj file in files)
             {
                 DefaultFileIcon icon = new DefaultFileIcon(file.Name, file.Extension);
@@ -64,6 +62,12 @@ namespace WpfApplication1
                 OrganizerFilesPanel.Children.Add(icon);
             }
         }
+        public OrganizerListItem(string hheader)
+        {
+            Header = hheader;
+            InitializeComponent();
+        }
+
         public void ScrollContent(object sender, MouseWheelEventArgs e)
         {
             DependencyObject obj = this;
@@ -79,13 +83,34 @@ namespace WpfApplication1
 
         private void DeleteFolder_Click(object sender, RoutedEventArgs e)
         {
-            
-            var result = MessageBox.Show("do you want to delete the folder?", "kek", MessageBoxButton.YesNo);
-            if(result == MessageBoxResult.Yes)
+            if (Directory.Exists(MainDirectory.directory + "\\" + Header))
             {
-                Directory.Delete(MainDirectory.directory + "\\" + Header);
+                var result = MessageBox.Show("do you want to delete the folder?", "kek", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    DirectoryInfo Dinfo = new DirectoryInfo(MainDirectory.directory + "\\" + Header);
+                    Dinfo.Delete(true);
+                }
             }
-            
+        }
+
+        private void OrganizerFilesPanel_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach(string FileDir in files)
+                {
+                    if(MainDirectory.IsDirectory(FileDir) == false)
+                    {
+                        FileInfo fInfo = new FileInfo(FileDir);
+                        //DefaultFileIcon icon = new DefaultFileIcon(fInfo.Name, fInfo.Extension);
+                        //OrganizerFilesPanel.Children.Add(icon);
+                        fInfo.MoveTo(MainDirectory.directory + Header + "\\" + fInfo.Name);
+                            
+                    }
+                }
+            }
         }
     }
 }
